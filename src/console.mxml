@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TabbedViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                                  xmlns:s="library://ns.adobe.com/flex/spark"
+                                  currentState="{console.LOGGED_OUT_STATE}"
+                                  creationComplete="init()" >
+
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+  </fx:Declarations>
+  
+  <fx:Script>
+    <![CDATA[
+      import mx.collections.ArrayCollection;
+      
+      import it.ht.rcs.console.login.LoginView;
+      
+      public static const LOGGED_IN_STATE:String = "loggedIn";
+      public static const LOGGED_OUT_STATE:String = "loggedOut";
+      
+      public static var appDescriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+      public static var ns:Namespace = appDescriptor.namespace();
+      
+      /* This variable contains the version number, the value is taken dynamically from console-app.xml */ 
+      [Bindable]
+      public static var appVersion:String = appDescriptor.ns::versionLabel;
+      [Bindable]
+      public static var rcsVersion:String = "8.0.0";
+      
+      /* supported locales for the application */
+      [Bindable]
+      public static var locales:ArrayCollection = new ArrayCollection(['en_US', 'it_IT']); 
+      
+      private function init():void
+      {
+        return;
+      }
+      
+      /* for a reason out of my knowledge we have to use this hack:
+       *  - use the two functions on enterState
+       * since includeIn= seems to not work
+       */
+      private function loggedout():void
+      {
+        this.tabbedNavigator.removeAll();
+        this.tabbedNavigator.validateNow();
+        this.tabbedNavigator.addItem(Login);
+      }
+      
+      private function loggedin():void
+      {
+        this.tabbedNavigator.removeAll();
+        this.tabbedNavigator.validateNow();
+        this.tabbedNavigator.addItem(Accounting);
+        this.tabbedNavigator.addItem(Console);
+        this.tabbedNavigator.addItem(Dashboard);
+        this.tabbedNavigator.addItem(Alerting);
+        this.tabbedNavigator.addItem(Correlation);
+        this.tabbedNavigator.addItem(Network);
+        this.tabbedNavigator.addItem(Audit);
+        this.tabbedNavigator.addItem(Monitor);
+      }
+    ]]>
+  </fx:Script>
+
+  <s:states>
+    <s:State enterState="loggedout()" name="loggedOut"/>
+    <s:State enterState="loggedin()" name="loggedIn"/>
+  </s:states>
+  
+  <!-- Logged Out state -->
+  <s:ViewNavigator id="Login" width="100%" height="100%" label="Login" firstView="it.ht.rcs.console.login.LoginView" title="Login" includeIn="loggedOut"/>
+  
+  <!-- Logged In state -->
+  <s:ViewNavigator id="Accounting" width="100%" height="100%" label="Accounting" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Accounting" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Console" width="100%" height="100%" label="Console" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Console" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Dashboard" width="100%" height="100%" label="Dashboard" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Dashboard" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Alerting" width="100%" height="100%" label="Alerting" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Alerting" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Correlation" width="100%" height="100%" label="Correlation" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Correlation" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Network" width="100%" height="100%" label="Network" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Network" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Audit" width="100%" height="100%" label="Audit" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Audit" includeIn="loggedIn"/>
+  <s:ViewNavigator id="Monitor" width="100%" height="100%" label="Monitor" firstView="it.ht.rcs.console.dashboard.DashboardView" title="Monitor" includeIn="loggedIn"/>
+  
+</s:TabbedViewNavigatorApplication>

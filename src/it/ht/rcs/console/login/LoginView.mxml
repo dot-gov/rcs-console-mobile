@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:login="it.ht.rcs.console.login.*"
+        xmlns:effects="it.ht.rcs.console.effects.*"
+        title="Login" actionBarVisible="false" tabBarVisible="false"
+        backgroundAlpha="0.7" backgroundColor="#6FA0BF" >
+
+  <login:Login id="loginPanel" horizontalCenter="0" verticalCenter="0"/>
+  <effects:Reflector alpha="0.5" blurAmount="0.5" falloff="0.5" target="{loginPanel}"/>
+  
+</s:View>
