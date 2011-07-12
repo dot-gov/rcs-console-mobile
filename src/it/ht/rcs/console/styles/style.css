@@ -1,0 +1,89 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace filters "it.ht.rcs.console.filters.*";
+@namespace console "it.ht.rcs.console.*";
+
+s|Label
+{
+  color: #454545;
+}
+
+s|Label.error
+{
+  color: #FF0000;
+}
+
+s|Label.UserProfile
+{
+  fontSize: 14;
+  fontWeight: bold;
+}
+
+s|Label.ClockProfile
+{
+  fontSize: 14;
+  fontWeight: bold;
+}
+
+s|Label.MonitorAccordion
+{
+  textAlign: right;
+  fontWeight: bold;
+  color: #454545;
+}
+
+s|Label.MonitorStatus
+{
+  text-align: center;
+  color: #454545;
+}
+
+s|Panel
+{
+  backgroundColor: #EAEAEA;
+}
+
+s|Button.AddRemove
+{
+  fontSize: 17;
+  fontWeight: normal;
+}
+
+s|Label.AccountingTitles
+{
+  paddingRight: 0;
+  fontFamily: Verdana;
+  fontSize: 16;
+}
+
+.auditFilter
+{
+  top: 10;
+  right: 10;
+  bottom: 10;
+  left: 10;
+}
+
+.matched
+{
+  fontWeight: bold;
+  color: #6FA0BF;
+}
+
+filters|AbstractFilterPopup s|Label
+{
+  fontWeight: bold;
+  color: #FFFFFF;
+}
+
+filters|AbstractFilterPopup s|Button s|Label
+{
+  fontWeight: bold;
+  color: #000000;
+}
+
+console|ButtonBar s|Button
+{
+  width: 30;
+  height: 20;
+}

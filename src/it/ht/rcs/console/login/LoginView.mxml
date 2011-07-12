@@ -6,7 +6,7 @@
         title="Login" actionBarVisible="false" tabBarVisible="false"
         backgroundAlpha="0.7" backgroundColor="#6FA0BF" >
 
-  <login:Login id="loginPanel" horizontalCenter="0" verticalCenter="0"/>
+  <login:Login id="loginPanel" verticalCenter="0"/>
   <effects:Reflector alpha="0.5" blurAmount="0.5" falloff="0.5" target="{loginPanel}"/>
   
 </s:View>

@@ -4,15 +4,19 @@
                                   currentState="{console.LOGGED_OUT_STATE}"
                                   creationComplete="init()" >
 
+  <fx:Style source="it/ht/rcs/console/styles/style.css"/>
+
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
   
   <fx:Script>
     <![CDATA[
-      import mx.collections.ArrayCollection;
-      
+      import it.ht.rcs.console.DB;
+      import it.ht.rcs.console.accounting.model.Session;
       import it.ht.rcs.console.login.LoginView;
+      
+      import mx.collections.ArrayCollection;
       
       public static const LOGGED_IN_STATE:String = "loggedIn";
       public static const LOGGED_OUT_STATE:String = "loggedOut";
@@ -30,14 +34,28 @@
       [Bindable]
       public static var locales:ArrayCollection = new ArrayCollection(['en_US', 'it_IT']); 
       
+      /* current session once logged in */
+      [Bindable]
+      public static var currentSession:Session;
+      
+      [Bindable]
+      public static var currentDB:DB;
+      
       private function init():void
       {
-        return;
+        NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE, onDeactivateApp);
+      }
+      
+      protected function onDeactivateApp(event:Event):void
+      {
+        NativeApplication.nativeApplication.exit();
       }
       
       /* for a reason out of my knowledge we have to use this hack:
-       *  - use the two functions on enterState
-       * since includeIn= seems to not work
+       *  - remove all the tabs
+       *  - validate the tabNavigator
+       *  - add the tabs we want in the current state
+       * so, we add the two callbacks in enterState since includeIn= seems to not work
        */
       private function loggedout():void
       {
